@@ -7,7 +7,8 @@ const Products = () => {
       currency: 'USD',
       num_items: 1,
       content_name: productName,
-    })
+    });
+    alert(`You have purchased ${productName} at USD${price}!!!`);
   }
 
   return (
@@ -29,6 +30,6 @@ const Products = () => {
       </li>
     </ul>
   );
-}
+};
 
 export default Products;
