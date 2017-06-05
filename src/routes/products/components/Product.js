@@ -35,6 +35,16 @@ const Product = ({match}) => {
   const {params: {productId}} = match;
   const product = productMapping[productId];
 
+  const clickHandler = () => {
+    window.fbq('track', 'Purchase', {
+      value: product.id,
+      currency: 'THB',
+      num_items: 1,
+      content_name: product.title,
+    });
+    alert(`You have purchased ${product.title} at price ${product.price}!`);
+  }
+
   return (
     <div>
       <div>Product ID: {product.id}</div>
@@ -42,6 +52,7 @@ const Product = ({match}) => {
       <div>Title: {product.title}</div>
       <div>Description: {product.description}</div>
       <div>Price: {product.price}</div>
+      <button onClick={clickHandler}>Buy Now!</button>
     </div>
   )
 };
