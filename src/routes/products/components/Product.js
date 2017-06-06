@@ -5,28 +5,32 @@ const productMapping = {
     id: 1,
     title: 'Calculator',
     description: 'Awesome calculator',
-    price: '2000 THB',
+    price: '2000',
+    currency: 'THB',
     imageLink: '/images/calculator.jpeg',
   },
   2: {
     id: 2,
     title: 'Camera',
     description: 'Black Camera',
-    price: '35000 THB',
+    price: '35000',
+    currency: 'THB',
     imageLink: '/images/camera.jpeg',
   },
   3: {
     id: 3,
     title: 'Len',
     description: 'Len for Camera',
-    price: '8000 THB',
+    price: '8000',
+    currency: 'THB',
     imageLink: '/images/len.jpeg',
   },
   4: {
     id: 4,
     title: 'Watch',
     description: 'Great Watch',
-    price: '2000 THB',
+    price: '2000',
+    currency: 'THB',
     imageLink: '/images/watch.jpeg',
   },
 };
@@ -35,12 +39,25 @@ const Product = ({match}) => {
   const {params: {productId}} = match;
   const product = productMapping[productId];
 
-  const clickHandler = () => {
+  const addToCartHandler = () => {
+    window.fbq('track', 'AddToCart', {
+      value: product.price,
+      currency: product.currency,
+      content_name: product.title,
+      content_type: 'product',
+      content_ids: product.id,
+    });
+    alert(`You have added ${product.title} to card`);
+  }
+
+  const buyHandler = () => {
     window.fbq('track', 'Purchase', {
-      value: product.id,
-      currency: 'THB',
+      value: product.price,
+      currency: product.currency,
       num_items: 1,
       content_name: product.title,
+      content_type: 'product',
+      content_ids: product.id,
     });
     alert(`You have purchased ${product.title} at price ${product.price}!`);
   }
@@ -52,7 +69,8 @@ const Product = ({match}) => {
       <div>Title: {product.title}</div>
       <div>Description: {product.description}</div>
       <div>Price: {product.price}</div>
-      <button onClick={clickHandler}>Buy Now!</button>
+      <button onClick={addToCartHandler}>Add to Cart</button>
+      <button onClick={buyHandler}>Buy Now!</button>
     </div>
   )
 };
