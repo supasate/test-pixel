@@ -8,6 +8,7 @@ const productMapping = {
     price: '2000',
     currency: 'THB',
     imageLink: '/images/calculator.jpeg',
+    group: 1,
   },
   2: {
     id: 2,
@@ -16,6 +17,7 @@ const productMapping = {
     price: '35000',
     currency: 'THB',
     imageLink: '/images/camera.jpeg',
+    group: 2,
   },
   3: {
     id: 3,
@@ -24,6 +26,7 @@ const productMapping = {
     price: '8000',
     currency: 'THB',
     imageLink: '/images/len.jpeg',
+    group: 2,
   },
   4: {
     id: 4,
@@ -32,6 +35,7 @@ const productMapping = {
     price: '2000',
     currency: 'THB',
     imageLink: '/images/watch.jpeg',
+    group: 3,
   },
 };
 
@@ -46,6 +50,7 @@ const Product = ({match}) => {
       content_name: product.title,
       content_type: 'product',
       content_ids: product.id,
+      item_group_id: product.group,
     });
     alert(`You have added ${product.title} to card`);
   }
@@ -58,6 +63,7 @@ const Product = ({match}) => {
       content_name: product.title,
       content_type: 'product',
       content_ids: product.id,
+      item_group_id: product.group,
     });
     alert(`You have purchased ${product.title} at price ${product.price}!`);
   }
