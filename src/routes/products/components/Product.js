@@ -66,7 +66,14 @@ const Product = ({match}) => {
       item_group_id: product.group,
     });
     alert(`You have purchased ${product.title} at price ${product.price}!`);
-  }
+  };
+
+  const loveHandler = () => {
+    window.fbq('track', 'Love', {
+      content_name: product.title,
+      value: 'Love',
+    });
+  };
 
   return (
     <div>
@@ -77,6 +84,7 @@ const Product = ({match}) => {
       <div>Price: {product.price}</div>
       <button onClick={addToCartHandler}>Add to Cart</button>
       <button onClick={buyHandler}>Buy Now!</button>
+      <button onClick={loveHandler}>Love ❤</button>
     </div>
   )
 };
